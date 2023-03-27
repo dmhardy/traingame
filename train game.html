@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Train Game</title>
+</head>
+<body>
+    <pre>
+____
+|DD|____T_
+|_ |_____|&lt;
+  @-@-@-oo\
+    </pre>
+    <h1>Train Game</h1>
+    <p>Diesel: <span id="diesel">0</span></p>
+    <button onclick="collectResource('diesel')">Collect Diesel</button>
+    <p>Steam: <span id="steam">0</span></p>
+    <button onclick="collectResource('steam')">Collect Steam</button>
+    <p>Fuel: <span id="fuel">0</span></p>
+    <button onclick="collectResource('fuel')">Collect Fuel</button>
+    <p>Coal: <span id="coal">0</span></p>
+    <button onclick="collectResource('coal')">Collect Coal</button>
+    <h2>Upgrades</h2>
+    <h3>Locomotives</h3>
+    <button onclick="buyLocomotive('GE Dash 9-44CW')">Buy GE Dash 9-44CW (Cost: 10 Diesel, 10 Steam, 10 Fuel, 10 Coal)</button><br>
+    <button onclick="buyLocomotive('EMD SD70ACe')">Buy EMD SD70ACe (Cost: 20 Diesel, 20 Steam, 20 Fuel, 20 Coal)</button><br>
+    <button onclick="buyLocomotive('GE AC6000CW')">Buy GE AC6000CW (Cost: 30 Diesel, 30 Steam, 30 Fuel, 30 Coal)</button><br>
+    <h3>Auto-Increment</h3>
+    <button onclick="buyAutoIncrement('Conductor')">Hire Conductor (Cost: 50 Diesel, 50 Steam, 50 Fuel, 50 Coal)</button><br>
+    <button onclick="buyAutoIncrement('Engineer')">Hire Engineer (Cost: 100 Diesel, 100 Steam, 100 Fuel, 100 Coal)</button><br>
+    <button onclick="buyAutoIncrement('Fireman')">Hire Fireman (Cost: 150 Diesel, 150 Steam, 150 Fuel, 150 Coal)</button><br>
+
+<!-- Part 1 ends here -->
+
+<!-- Part 2.1 -->
+    <script>
+        let diesel = 0;
+        let steam = 0;
+        let fuel = 0;
+        let coal = 0;
+        let locomotiveLevel = 1;
+        let autoIncrementLevel = 0;
+        setInterval(autoIncrementResources,1000);
+        function collectResource(resource) {
+            if (resource === 'diesel') {
+                diesel += locomotiveLevel;
+            } else if (resource === 'steam') {
+                steam += locomotiveLevel;
+            } else if (resource === 'fuel') {
+                fuel += locomotiveLevel;
+            } else if (resource === 'coal') {
+                coal += locomotiveLevel;
+            }
+            updateResources();
+        }
+        function buyLocomotive(locomotive) {
+            if (locomotive === 'GE Dash 9-44CW') {
+                if (diesel >=10 && steam >=10 && fuel >=10 && coal >=10) {
+                    diesel -=10 ;
+                    steam -=10 ;
+                    fuel -=10 ;
+                    coal -=10 ;
+                    locomotiveLevel++;
+                    updateResources();
+                } else {
+                    alert('Not enough resources!');
+                }
+            } else if (locomotive === 'EMD SD70ACe') {
+                if (diesel >=20 && steam >=20 && fuel >=20 && coal >=20) {
+                    diesel -=20 ;
+                    steam -=20 ;
+                    fuel -=20 ;
+                    coal -=20 ;
+                    locomotiveLevel +=2 ;
+                    updateResources();
+                } else {
+                    alert('Not enough resources!');
+                }
+            } else if (locomotive === 'GE AC6000CW') {
+                if (diesel >=30 && steam >=30 && fuel >=30 && coal >=30) {
+                    diesel -=30 ;
+                    steam -=30 ;
+                    fuel -=30 ;
+                    coal -=30 ;
+                    locomotiveLevel +=3 ;
+                    updateResources();
+                } else {
+                    alert('Not enough resources!');
+                }
+            }
+        }
+
+
+
+
+
+<!-- Part 2.2 -->
+        function buyAutoIncrement(autoIncrement) {
+            if (autoIncrement === 'Conductor') {
+                if (diesel >=50 && steam >=50 && fuel >=50 && coal >=50) {
+                    diesel -=50 ;
+                    steam -=50 ;
+                    fuel -=50 ;
+                    coal -=50 ;
+                    autoIncrementLevel++;
+                    updateResources();
+                } else {
+                    alert('Not enough resources!');
+                }
+            } else if (autoIncrement === 'Engineer') {
+                if (diesel >=100 && steam >=100 && fuel >=100 && coal >=100) {
+                    diesel -=100 ;
+                    steam -=100 ;
+                    fuel -=100 ;
+                    coal -=100 ;
+                    autoIncrementLevel +=2 ;
+                    updateResources();
+                } else {
+                    alert('Not enough resources!');
+                }
+            } else if (autoIncrement === 'Fireman') {
+                if (diesel >=150 && steam >=150 && fuel >=150 && coal >=150) {
+                    diesel -=150 ;
+                    steam -=150 ;
+                    fuel -=150 ;
+                    coal -=150 ;
+                    autoIncrementLevel +=3 ;
+                    updateResources();
+                } else {
+                    alert('Not enough resources!');
+                }
+            }
+        }
+
+<!-- Part 2.3 -->
+        function autoIncrementResources() {
+            diesel += autoIncrementLevel;
+            steam += autoIncrementLevel;
+            fuel += autoIncrementLevel;
+            coal += autoIncrementLevel;
+            updateResources();
+        }
+        function updateResources() {
+            document.getElementById('diesel').textContent = diesel;
+            document.getElementById('steam').textContent = steam;
+            document.getElementById('fuel').textContent = fuel;
+            document.getElementById('coal').textContent = coal;
+        }
+    </script>
+</body>
+</html>
